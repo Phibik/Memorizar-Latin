@@ -30,3 +30,7 @@ enum Casos {
     LP = 13 // Locativo Plural
 };
 
+typedef struct MapaParaula {
+    map<string, Paraula> p;
+    map<string, string> t;
+} MapaParaula;

@@ -21,19 +21,15 @@ public:
 	    { casos[cas].push_back(forma); }
     void mostrarParaula() const;
 
-private:
-    string paraula;	// paraula en llatí
-    vector<string> genere;	// m, f, n
+protected:
+    string paraula;	            // paraula en llatí
+    vector<string> genere;	    // m, f, n
     vector<string> declinacio;	// tipus de declinació 
     string traduccio;
-    string comentari;	// comentari
+    string comentari;	        // comentari
     vector<vector<string>> casos; // casos
 
     void mostrarCas(const int& cas) const;
     int longitudVisual(const string& str) const;
 };
 
-typedef struct MapaParaula {
-    map<string, Paraula> p;
-    map<string, string> t;
-} MapaParaula;

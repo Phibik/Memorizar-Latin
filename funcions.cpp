@@ -1,4 +1,4 @@
-#include "paraules.cpp"
+#include "adjectius.cpp"
 
 void traduir(string& entrada, string& resposta, const string& paraula, const string& traduccio, const Paraula& p)
 {
