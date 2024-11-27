@@ -1,35 +1,45 @@
+#pragma once
+
 #include "llibreries.h"
+#include "paraules.h"
 
 class Paraula
 {
 public:
-    Paraula() { casos.resize(14); }
-    Paraula(const string& paraula, const vector<string>& genere, const vector<string>& declinacio,
-        const string& traduccio, const string& comentari = ""): paraula(paraula),
-	    genere(genere), declinacio(declinacio), traduccio(traduccio), comentari(comentari)
-        { casos.resize(14); }
+    Paraula() {}
+    Paraula(const string& p, const vector<string>& t, const string& c): paraula(p), traduccio(t), comentari(c) {}
+    Paraula(const Paraula& P): paraula(P.paraula), traduccio(P.traduccio), comentari(P.comentari) {}
+    Paraula& operator=(const Paraula& P);
+    virtual ~Paraula() = default;
 
     string getParaula() const { return paraula; }
-    vector<string> getGenere() const { return genere; }
-    vector<string> getDeclinacio() const { return declinacio; }
-    string getTraduccio() const { return traduccio; }
+    vector<string> getTraduccio() const { return traduccio; }
     string getComentari() const { return comentari; }
-    vector<vector<string>> getCasos() const { return casos; }
-    vector<string> getCas(const int& n) const { return casos[n]; }
 
-    void agregarCas(const int& cas, const string& forma)
-	    { casos[cas].push_back(forma); }
-    void mostrarParaula() const;
+    virtual void mostrar() const;
 
 protected:
-    string paraula;	            // paraula en llatí
-    vector<string> genere;	    // m, f, n
-    vector<string> declinacio;	// tipus de declinació 
-    string traduccio;
+    string paraula;             // paraula en llatí
+    vector<string> traduccio;   // paraula en castellà (varies traduccions)
     string comentari;	        // comentari
-    vector<vector<string>> casos; // casos
 
-    void mostrarCas(const int& cas) const;
     int longitudVisual(const string& str) const;
 };
 
+Paraula& Paraula::operator=(const Paraula& P)
+{
+    if (this != &P)
+    {
+        paraula = P.paraula;
+        traduccio = P.traduccio;
+        comentari = P.comentari;
+    }
+    return *this;
+}
+
+typedef struct MapaParaula
+{
+    map<string, Paraula> p;
+    map<string, string> t;
+} 
+MapaParaula;

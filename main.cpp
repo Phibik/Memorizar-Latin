@@ -1,4 +1,4 @@
-#include "menus.cpp"
+/*#include "menus.cpp"
 
 int main()
 {
@@ -50,3 +50,19 @@ int main()
     return 0;
 }
 
+*/
+
+// probes (funcionen)
+#include "paraules.cpp"
+#include "sustantius.cpp"
+
+int main()
+{
+    system("chcp 65001 > nul");	// per imprimer utf8
+    Paraula p("scribere", {"escriure"}, "");
+    p.mostrar();
+    Sustantiu s("scribere", {"escriure"}, "", {"m"}, {"1"});
+    s.agregarCas(0, "ns");
+    s.agregarCas(1, "");
+    s.mostrar();
+}

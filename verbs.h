@@ -3,7 +3,7 @@
 #include "llibreries.h"
 #include "paraules.h"
 
-class Adjectiu: public Paraula
+class Verb: public Paraula
 {
 public:
 

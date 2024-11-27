@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -29,8 +31,3 @@ enum Casos {
     LS = 12, // Locativo Singular
     LP = 13 // Locativo Plural
 };
-
-typedef struct MapaParaula {
-    map<string, Paraula> p;
-    map<string, string> t;
-} MapaParaula;

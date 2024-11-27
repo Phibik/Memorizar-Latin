@@ -1,4 +1,7 @@
+#include "sustantius.cpp"
 #include "adjectius.cpp"
+#include "verbs.cpp"
+#include "paraules.cpp"
 
 void traduir(string& entrada, string& resposta, const string& paraula, const string& traduccio, const Paraula& p)
 {
@@ -27,7 +30,7 @@ void traduir(string& entrada, string& resposta, const string& paraula, const str
         cin >> resposta;
         cout << '\n';
         if (resposta == "s")
-            p.mostrarParaula();
+            p.mostrar();
         
         cout << "Per sortir escriu \"0\"\n\n";
     }
