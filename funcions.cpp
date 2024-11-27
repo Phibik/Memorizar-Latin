@@ -153,6 +153,45 @@ string llegirFragment(string& linea, const string& caracter)
     return fragment;
 }
 
+ptr<Paraula> llegirSustantiu(const string& paraula, const vector<string>& traduccio, const string& comentari, string& linea)
+{
+    string genereString = llegirFragment(linea, ";");
+    string declinacioString = llegirFragment(linea, ";");
+
+    // vectoritzar generes i declinacions
+    vector<string> genere, declinacio;
+    int aux { 0 };
+    while (genereString != "" && aux++ < 10)
+        genere.push_back(llegirFragment(genereString, ","));
+    while (declinacioString != "" && aux++ < 10)
+        declinacio.push_back(llegirFragment(declinacioString, ","));
+    
+    // creació Sustantiu
+    Sustantiu sustantiu(paraula, traduccio, comentari, genere, declinacio);
+
+    // processar casos
+    for (int i = NS; i <= LP; ++i)
+    {
+        string cas = llegirFragment(linea, ";");
+
+        int aux { 0 };
+        while (cas != "" && aux++ < 10)
+            sustantiu.agregarCas(i, llegirFragment(cas, ","));
+    }
+
+    return make_shared<Sustantiu>(sustantiu);
+}
+
+ptr<Paraula> llegirAdjectiu(const string& paraula, const vector<string>& traduccio, const string& comentari, string& linea)
+{
+    return nullptr;
+}
+
+ptr<Paraula> llegirVerb(const string& paraula, const vector<string>& traduccio, const string& comentari, string& linea)
+{
+    return nullptr;
+}
+
 MapaParaula llegirParaules(const string& nomArxiu)
 {
     ifstream arxiu("./paraules/" + nomArxiu);
@@ -169,43 +208,31 @@ MapaParaula llegirParaules(const string& nomArxiu)
     {
         // llegir primers fragments
         string paraula = llegirFragment(linea, ";");
-        string genere = llegirFragment(linea, ";");
-        string declinacio = llegirFragment(linea, ";");
-        string traduccio = llegirFragment(linea, ";");
+        string traduccioString = llegirFragment(linea, ";");
         string comentari = llegirFragment(linea, ";");
         
-        // vectoritzar generes i declinacions
-        vector<string> declinacioVec, genereVec;
-        int aux { 0 };
-        while (genere != "" && aux++ < 10)
-            genereVec.push_back(llegirFragment(genere, ","));
-        aux = 0;
-        while (declinacio != "" && aux++ < 10)
-            declinacioVec.push_back(llegirFragment(declinacio, ","));
-
-        // inicialitza paraula
-        Paraula novaParaula(paraula, genereVec, declinacioVec, traduccio, comentari);
-
-        // processar casos
-        for (int i = NS; i <= LP; ++i)
-        {
-            string cas = llegirFragment(linea, ";");
-
-            int aux { 0 }; // evitar bucle infinit per si de cas
-            while (cas != "" && aux++ < 10)
-                novaParaula.agregarCas(i, llegirFragment(cas, ","));
-        }
-
-        paraules.p[paraula] = novaParaula;
-        paraules.t[traduccio] = paraula;
+        // vectoritzar traduccio
+        vector<string> traduccio;
+        while (traduccioString != "")
+            traduccio.push_back(llegirFragment(traduccioString, ","));
+        
+        // lectura concreta
+        ptr<Paraula> ptrParaula;
+        if (nomArxiu[0] == 's')
+            ptrParaula = llegirSustantiu(paraula, traduccio, comentari, linea);
+        else if (nomArxiu[0] == 'a')
+            ptrParaula = llegirAdjectiu(paraula, traduccio, comentari, linea);
+        else if (nomArxiu[0] == 'v')
+            ptrParaula = llegirVerb(paraula, traduccio, comentari, linea);
+        
+        // inserir ptrParaula i traduccions
+        paraules.p[paraula] = ptrParaula;
+        for (int i = 0; i < traduccio.size(); ++i)
+            paraules.t[traduccio[i]].insert(paraula);
     }
 
     arxiu.close();
     return paraules;
 }
-
-
-
-
 
 

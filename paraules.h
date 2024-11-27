@@ -39,7 +39,7 @@ Paraula& Paraula::operator=(const Paraula& P)
 
 typedef struct MapaParaula
 {
-    map<string, Paraula> p;
-    map<string, string> t;
-} 
+    map<string, ptr<Paraula>> p;
+    map<string, set<string>> t;
+}
 MapaParaula;

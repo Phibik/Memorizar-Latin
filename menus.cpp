@@ -70,7 +70,7 @@ void menuEndevinacions(const MapaParaula& paraules)
     }
 }
 
-void mostrarDiccionari(const MapaParaula& paraules)
+void diccionari(const MapaParaula& paraules)
 {
     string paraulesLlati = "\nParaules en llatí:\n";
     for (auto it = paraules.p.begin(); it != paraules.p.end(); ++it)
@@ -101,13 +101,44 @@ void mostrarDiccionari(const MapaParaula& paraules)
     {
         if (paraules.p.find(entrada) != paraules.p.end())
         {
-            paraules.p.at(entrada).mostrarParaula();
+            paraules.p.at(entrada)->mostrar();
             cout << "\n";
         }
         else if (paraules.t.find(entrada) != paraules.t.end())
         {
-            paraules.p.at(paraules.t.at(entrada)).mostrarParaula();
-            cout << "\n";
+            if (paraules.t.at(entrada).size() == 1)
+                paraules.p.at(*(paraules.t.at(entrada).begin()))->mostrar();
+
+            else
+            {
+                string novaEntrada = entrada;
+                while (novaEntrada != "0")
+                {
+                    // mostrar totes les possibles paraules
+                    cout << "Palabras con la traduccion \"" << novaEntrada << "\":\n";
+                    for (auto it = paraules.t.at(entrada).begin(); it != paraules.t.at(entrada).end(); ++it)
+                    {
+                        if (it != paraules.t.at(entrada).begin())
+                            cout << ", ";
+                        cout << *it;
+                    }
+                    cout << "\n";
+
+                    // rebre novaEntrada i comprobarla
+                    cout << "\nEscribe la palabra que quieras ver (0 para salir): ";
+                    cin >> novaEntrada;
+
+                    if (paraules.p.find(novaEntrada) != paraules.p.end())
+                    {
+                        paraules.p.at(novaEntrada)->mostrar();
+                        novaEntrada = "0";
+                    }
+                    else
+                        cout << "\n\nNo se ha encontrado la palabra";
+
+                    cout << "\n\n";
+                }
+            }
         }
         else
             cout << "\n\nNo s'ha trobat.\n";

@@ -8,12 +8,17 @@
 #include <list>
 #include <vector>
 #include <iomanip>
-#include <unordered_map>
 #include <cmath>
 #include <fstream>
 #include <map>
+#include <unordered_map>
+#include <set>
+#include <memory>
 
 using namespace std;
+
+template <typename T>
+using ptr = std::shared_ptr<T>;
 
 enum Casos {
     NS = 0,  // Nominativo Singular

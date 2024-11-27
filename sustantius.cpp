@@ -29,7 +29,7 @@ void Sustantiu::mostrar() const
     }
 
     cout << '\n';
-    cout << "Comentario: " << comentari << "\n\n";
+    cout << "Comentario:  " << comentari << "\n\n";
 
     cout << "+=====================================================+\n";
     cout << "|    Cas    |      Singular      |       Plural       |\n";
