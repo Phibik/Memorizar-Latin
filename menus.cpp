@@ -7,9 +7,12 @@ void mostrarMenu()
     cout << "|>=============+#   MENU   #+=============<|\n";
     cout << "$$+=============############=============+$$\n";
     cout << '\n';
-    cout << "   1. Paraules comuns\n";
-    cout << "   2. Paraules sobre menjar\n";
-    cout << "   #. Sortir (introduir qualsevol nombre)\n";
+    cout << " Selecciona las familas de palabras con los numeros.\n";
+    cout << " Por ejemplo \"1 2\" selecciona \"comunes\" y \"comdia\".\n";
+    cout << '\n';
+    cout << "   1. Palabras comunes\n";
+    cout << "   2. Palabras sobre comida\n";
+    cout << "   #. Salir (introducir cualquier numero)\n";
     cout << "\n\n";
 }
 
@@ -17,7 +20,7 @@ void mostrarOpcions()
 {
     cout << '\n';
     cout << "$$+==========###############=============+$$\n";
-    cout << "|>==========+#   OPCIONS   #+=============<|\n";
+    cout << "|>==========+#  OPCIONES   #+=============<|\n";
     cout << "$$+==========###############=============+$$\n";
     cout << '\n';
     cout << "   1. Traduir\n";
