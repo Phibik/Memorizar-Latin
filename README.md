@@ -6,12 +6,18 @@
 
 ### 1. Descargar el código
 Primero, descarga el código completo y guárdalo en la carpeta que prefieras. Por ejemplo:  
-```C:\codigos\Memorizar-Latin```
+```
+C:\codigos\Memorizar-Latin
+```
 
 ### 2. Abrir la Consola o Terminal
 Abre la consola o terminal en tu sistema operativo. Una vez abierta, navega hasta la carpeta donde has descargado el código con el siguiente comando:  
-```cd C:\codigos\Memorizar-Latin```
+```
+cd C:\codigos\Memorizar-Latin
+```
 
 ### 3. Ejecutar el programa
 Para ejecutar el programa, escribe el siguiente comando y pulsa `Enter`:
-```./main```
+```
+./main
+```
